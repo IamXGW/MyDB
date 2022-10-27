@@ -1,8 +1,8 @@
-package com.iamxgw.mydb.backend;
+package com.iamxgw.mydb.backend.tm;
 
 public interface TransactionManager {
     // 开启新事务
-    long bagin();
+    long begin();
     // 提交事务
     void commit(long xid);
     // 取消事务
