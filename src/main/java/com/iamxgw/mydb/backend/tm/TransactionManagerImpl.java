@@ -153,6 +153,12 @@ public class TransactionManagerImpl implements TransactionManager {
         updateXID(xid, FIELD_TRAN_ABORTED);
     }
 
+    /**
+     * 检查 xid 事务的状态是不是 status
+     * @param xid
+     * @param status
+     * @return
+     */
     private boolean checkXID(long xid, byte status) {
         long offset = getXidPosition(xid);
         ByteBuffer buf = ByteBuffer.wrap(new byte[XID_FIELD_SIZE]);
