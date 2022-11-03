@@ -13,6 +13,18 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import com.google.common.primitives.Bytes;
 
+/**
+ * 日志文件读写
+ *
+ * 日志文件的标准格式为：
+ * [XChecksum] [Log1] [Log2] ... [LogN] [BadTail]
+ * XChecksum 为后续所有日志计算的 Checksum，int 类型
+ *
+ * 每条日志的标准格式为：
+ * [size] [Checksum] [Data]
+ * size 为 4 字节 int，标识 Data 长度
+ * Checksum 为 4 字节 int
+ */
 public class LoggerImpl implements Logger {
     private static final int SEED = 13331;
 
@@ -163,11 +175,16 @@ public class LoggerImpl implements Logger {
         }
     }
 
+    /**
+     * 包装一条 log
+     * [size] [Checksum] [Data]
+     * @param data
+     * @return
+     */
     private byte[] wrapLog(byte[] data) {
         byte[] checksum = Parser.int2Byte(calChecksum(0, data));
         byte[] size = Parser.int2Byte(data.length);
-//        return Bytes.concat(size, checksum, data);
-        return null;
+        return Bytes.concat(size, checksum, data);
     }
 
     @Override

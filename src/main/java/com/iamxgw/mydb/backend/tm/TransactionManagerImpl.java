@@ -11,6 +11,11 @@ import java.nio.channels.FileChannel;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * [Header] [TX1] [TX2] ... [TXn]
+ * Header：8 字节长度，记录该 xid 文件管理事务的个数
+ * TX：1 字节长度，记录当前事务的状态，0 活跃，1 已提交，2 取消
+ */
 public class TransactionManagerImpl implements TransactionManager {
     // XID 头文件长度
     static final int LEN_XID_HEADER_LENGTH = 8;
@@ -27,6 +32,7 @@ public class TransactionManagerImpl implements TransactionManager {
 
     private RandomAccessFile file;
     private FileChannel fc;
+    // 记录事务的数量
     private long xidCounter;
     private Lock counterLock;
 
