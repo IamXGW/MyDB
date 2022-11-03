@@ -1,4 +1,4 @@
-package com.iamxgw.mydb.backend;
+package com.iamxgw.mydb.backend.tm;
 
 import com.iamxgw.mydb.backend.tm.TransactionManager;
 import org.junit.Test;
@@ -25,7 +25,7 @@ public class TransactionManagerTest {
 
     @Test
     public void testMultiThread() {
-        tmger = TransactionManager.create("/Users/xuguangwei/Downloads/mydb_test/tranmger_test");
+        tmger = TransactionManager.create("src/testFiles/tranmger_test");
         transMap = new ConcurrentHashMap<>();
         cdl = new CountDownLatch(noWorkers);
         for (int i = 0; i < noWorkers; ++i) {
@@ -37,7 +37,7 @@ public class TransactionManagerTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        assert new File("/Users/xuguangwei/Downloads/mydb_test/tranmger_test.xid").delete();
+        assert new File("src/testFiles/tranmger_test.xid").delete();
     }
 
     private void worker() {

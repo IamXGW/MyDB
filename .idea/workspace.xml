@@ -8,12 +8,11 @@
       <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/logger/Logger.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/iamxgw/mydb/backend/TransactionManagerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/iamxgw/mydb/backend/dm/logger/LoggerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" />
@@ -22,6 +21,7 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/logger/LoggerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/logger/LoggerImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/tm/TransactionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/tm/TransactionManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/tm/TransactionManagerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/tm/TransactionManagerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/iamxgw/mydb/backend/TransactionManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/iamxgw/mydb/backend/tm/TransactionManagerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,17 +55,53 @@
     "settings.editor.selected.configurable": "MavenSettings"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.TransactionManagerTest">
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.iamxgw.mydb.backend.tm" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.LoggerTest.testLogger">
+    <configuration name="LoggerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MyDB" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.iamxgw.mydb.backend.dm.logger.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.iamxgw.mydb.backend.dm.logger" />
+      <option name="MAIN_CLASS_NAME" value="com.iamxgw.mydb.backend.dm.logger.LoggerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LoggerTest.testLogger" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MyDB" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.iamxgw.mydb.backend.dm.logger.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.iamxgw.mydb.backend.dm.logger" />
+      <option name="MAIN_CLASS_NAME" value="com.iamxgw.mydb.backend.dm.logger.LoggerTest" />
+      <option name="METHOD_NAME" value="testLogger" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TransactionManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MyDB" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.iamxgw.mydb.backend.*" />
+          <option name="PATTERN" value="com.iamxgw.mydb.backend.tm.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.iamxgw.mydb.backend" />
-      <option name="MAIN_CLASS_NAME" value="com.iamxgw.mydb.backend.TransactionManagerTest" />
+      <option name="PACKAGE_NAME" value="com.iamxgw.mydb.backend.tm" />
+      <option name="MAIN_CLASS_NAME" value="com.iamxgw.mydb.backend.tm.TransactionManagerTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -75,12 +111,12 @@
       <module name="MyDB" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.iamxgw.mydb.backend.*" />
+          <option name="PATTERN" value="com.iamxgw.mydb.backend.tm.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.iamxgw.mydb.backend" />
-      <option name="MAIN_CLASS_NAME" value="com.iamxgw.mydb.backend.TransactionManagerTest" />
+      <option name="PACKAGE_NAME" value="com.iamxgw.mydb.backend.tm" />
+      <option name="MAIN_CLASS_NAME" value="com.iamxgw.mydb.backend.tm.TransactionManagerTest" />
       <option name="METHOD_NAME" value="testMultiThread" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -89,6 +125,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.LoggerTest.testLogger" />
+        <item itemvalue="JUnit.LoggerTest" />
         <item itemvalue="JUnit.TransactionManagerTest" />
         <item itemvalue="JUnit.TransactionManagerTest.testMultiThread" />
       </list>
@@ -102,7 +140,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1667223811378</updated>
-      <workItem from="1667223813199" duration="8111000" />
+      <workItem from="1667223813199" duration="8958000" />
     </task>
     <servers />
   </component>

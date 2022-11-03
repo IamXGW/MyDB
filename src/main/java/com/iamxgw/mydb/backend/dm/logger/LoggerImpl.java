@@ -53,6 +53,7 @@ public class LoggerImpl implements Logger {
         this.file = file;
         this.fc = fc;
         this.xChecksum = xChecksum;
+        this.lock = new ReentrantLock();
     }
     
     void init() {
