@@ -51,7 +51,7 @@ public class PageCacheImpl extends AbstractCache<Page> implements PageCache {
 
     @Override
     public Page getPage(int pgno) throws Exception {
-        return null;
+        return get((long)pgno);
     }
 
     @Override
@@ -59,6 +59,13 @@ public class PageCacheImpl extends AbstractCache<Page> implements PageCache {
 
     }
 
+
+    /**
+     * 根据 pageNumber 从数据库文件中读取页数据，并包裹成 Page
+     * @param key
+     * @return
+     * @throws Exception
+     */
     @Override
     protected Page getForCache(long key) throws Exception {
         int pgno = (int)key;
@@ -103,12 +110,18 @@ public class PageCacheImpl extends AbstractCache<Page> implements PageCache {
 
     @Override
     public void release(Page pg) {
-
+        release((long)pg.getPageNumber());
     }
 
     @Override
     public void truncateByBgno(int maxPgno) {
-
+        long size = pageOffset(maxPgno + 1);
+        try {
+            file.setLength(size);
+        } catch (IOException e) {
+            Panic.panic(e);
+        }
+        pageNumbers.set(maxPgno);
     }
 
     @Override
@@ -118,7 +131,7 @@ public class PageCacheImpl extends AbstractCache<Page> implements PageCache {
 
     @Override
     public void flushPage(Page pg) {
-
+        flush(pg);
     }
 
     private static int pageOffset(int pgno) {

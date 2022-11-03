@@ -72,13 +72,18 @@ public abstract class AbstractCache<T> {
         try {
             obj = getForCache(key);
         } catch (Exception e) {
-            lock.lock();;
+            lock.lock();
             count--;
             getting.remove(key);
-            // BUG?
-            references.put(key, 1);
             lock.unlock();
+            throw e;
         }
+
+        lock.lock();
+        getting.remove(key);
+        cache.put(key, obj);
+        references.put(key, 1);
+        lock.unlock();
 
         return obj;
     }
