@@ -109,7 +109,7 @@ public class LoggerImpl implements Logger {
     }
 
     private byte[] internNext() {
-        if (position + OF_DATA >= fileSize) {
+        if (OF_DATA + position >= fileSize) {
             return null;
         }
         ByteBuffer tmp = ByteBuffer.allocate(4);
@@ -120,7 +120,7 @@ public class LoggerImpl implements Logger {
             Panic.panic(e);
         }
         int size = Parser.parseInt(tmp.array());
-        if (position + size + OF_DATA > fileSize) {
+        if (OF_DATA + position + size > fileSize) {
             return null;
         }
 

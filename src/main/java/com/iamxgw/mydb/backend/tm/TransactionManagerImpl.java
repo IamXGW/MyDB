@@ -25,7 +25,7 @@ public class TransactionManagerImpl implements TransactionManager {
     private static final byte FIELD_TRAN_ACTIVE = 0;
     private static final byte FIELD_TRAN_COMMITTED = 1;
     private static final byte FIELD_TRAN_ABORTED = 2;
-    // 超级事务，永远是 committed 状态
+    // 超级事务，xid 为 0，永远是 committed 状态
     public static final long SUPER_XID = 0;
     // XID 文件后缀
     static final String XID_SUFFIX = ".xid";
@@ -46,12 +46,12 @@ public class TransactionManagerImpl implements TransactionManager {
     /**
      * 检查 XID 文件的合法性
      * 原理：获取 XID_FILE_HEADER 中 xidcounter，根据它计算文件的理论长度，并和实际长度做对比
+     * 在创建 TransactionManagerImpl 实例时，会运行该方法
      */
     private void checkXIDCounter() {
         long fileLen = 0;
         try {
             fileLen = file.length();
-
         } catch (IOException e1) {
             Panic.panic(e1);
         }
@@ -75,6 +75,7 @@ public class TransactionManagerImpl implements TransactionManager {
 
     /**
      * 获取事务的位置
+     * 计算方式为 LEN_XID_HEADER_LENGTH + (xid - 1) * XID_FIELD_SIZE
      * @param xid
      * @return
      */
@@ -100,7 +101,7 @@ public class TransactionManagerImpl implements TransactionManager {
     }
 
     /**
-     * 将 XID 加一，并更新 XID Header
+     * 将 xidCounter 加一，并更新到 .XID 文件的 Header 中
      */
     private void incrXIDCounter() {
         xidCounter++;
@@ -119,7 +120,7 @@ public class TransactionManagerImpl implements TransactionManager {
     }
 
     /**
-     *更新事务状态为 status
+     * 更新 xid 事务状态为 status
      * @param xid
      * @param status
      */
@@ -184,7 +185,7 @@ public class TransactionManagerImpl implements TransactionManager {
 
     @Override
     public boolean isCommitted(long xid) {
-        if (xid == SUPER_XID) return false;
+        if (xid == SUPER_XID) return true;
         return checkXID(xid, FIELD_TRAN_COMMITTED);
     }
 

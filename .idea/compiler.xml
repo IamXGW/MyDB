@@ -9,5 +9,8 @@
         <module name="MyDB" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="MyDB" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>

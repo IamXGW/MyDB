@@ -1,7 +1,7 @@
-package com.iamxgw.mydb.backend.utils;
+package com.iamxgw.mydb.backend.dm.page;
 
-import com.iamxgw.mydb.backend.dm.page.Page;
 import com.iamxgw.mydb.backend.dm.pageCache.PageCache;
+import com.iamxgw.mydb.backend.utils.Parser;
 
 import java.util.Arrays;
 
@@ -9,14 +9,14 @@ import java.util.Arrays;
  * PageX 管理普通页面
  * 普通页结构如下：
  * [FreeSpaceOffset] [Data]
- * FreeSpaceOffset 大小为 2 字节，表示空闲位置开始的偏移
+ * FreeSpaceOffset 大小为 2 字节，表示页空闲位置开始的偏移
  */
 public class PageX {
     private static final short OF_FREE = 0;
     private static final short OF_DATA = 2;
     public static final int MAX_FREE_SPACE = PageCache.PAGE_SIZE - OF_DATA;
 
-    public byte[] initRaw() {
+    public static byte[] initRaw() {
         byte[] raw = new byte[PageCache.PAGE_SIZE];
         setFSO(raw, OF_DATA);
         return raw;
@@ -31,7 +31,8 @@ public class PageX {
     }
 
     private static short getFSO(byte[] raw) {
-        return Parser.parseShort(Arrays.copyOfRange(raw, 0, 2));
+        return Parser.parseShort(Arrays.copyOfRange(raw, OF_FREE, OF_DATA));
+//        return Parser.parseShort(Arrays.copyOfRange(raw, 0, 2));
     }
 
     /**

@@ -7,12 +7,17 @@ import java.util.Set;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * 使用「引用计数」作为缓存的淘汰策略
+ * @param <T>
+ */
 public abstract class AbstractCache<T> {
     // 实际缓存的数据
     private HashMap<Long, T> cache;
     // 资源的引用个数
     private HashMap<Long, Integer> references;
     // 正在被获取的资源
+    // 应多对线程场景，如果当前有其他线程正在获取该缓存，那当前线程就等会（1 million）再过来获取
     private HashMap<Long, Boolean> getting;
 
     // 最大允许缓存资源数
@@ -38,8 +43,8 @@ public abstract class AbstractCache<T> {
     protected T get(long key) throws Exception {
         while (true) {
             lock.lock();
+            // 该资源是否正在被使用
             if (getting.containsKey(key)) {
-                // 该资源正在被使用
                 lock.unlock();
                 try {
                     Thread.sleep(1);
@@ -49,8 +54,8 @@ public abstract class AbstractCache<T> {
                 }
                 continue;
             }
+            // 缓存中是否有该资源
             if (cache.containsKey(key)) {
-                // 该资源在缓存中
                 T obj = cache.get(key);
                 references.put(key, references.getOrDefault(key, 0) + 1);
                 lock.unlock();

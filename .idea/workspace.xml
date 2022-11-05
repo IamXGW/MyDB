@@ -5,12 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3084edcf-ed4f-46d1-9671-0e0dc1d33c2e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/iamxgw/mydb/backend/dm/page/MockPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/iamxgw/mydb/backend/dm/pageCache/MockPageCache.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/DataManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/DataManagerImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/Recover.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/dataItem/DataItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/dataItem/DataItemImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/pageIndex/PageIndex.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/pageIndex/PageInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/utils/Types.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/iamxgw/mydb/backend/dm/pageIndex/PageIndexTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/common/AbstractCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/common/AbstractCache.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/logger/LoggerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/logger/LoggerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/page/Page.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/page/Page.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/page/PageOne.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/page/PageOne.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/pageCache/PageCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/pageCache/PageCache.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/pageCache/PageCacheImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/pageCache/PageCacheImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/iamxgw/mydb/backend/dm/pageCache/PageCacheTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/iamxgw/mydb/backend/dm/pageCache/PageCacheTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/tm/TransactionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/tm/TransactionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/tm/TransactionManagerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/tm/TransactionManagerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/utils/PageX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/page/PageX.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +45,13 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
   <component name="ProjectId" id="2Gu1m4uHAl6omu7yFVvKKNdnTtw" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -37,36 +59,24 @@
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+    <option name="showVisibilityIcons" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "settings.editor.selected.configurable": "MavenSettings"
+    "settings.editor.selected.configurable": "preferences.keymap"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.iamxgw.mydb.backend.dm.page" />
       <recent name="com.iamxgw.mydb.backend.tm" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.PageCacheTest.testPageCacheMulti">
-    <configuration name="LoggerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="MyDB" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.iamxgw.mydb.backend.dm.logger.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.iamxgw.mydb.backend.dm.logger" />
-      <option name="MAIN_CLASS_NAME" value="com.iamxgw.mydb.backend.dm.logger.LoggerTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.TransactionManagerTest.testMultiThread">
     <configuration name="LoggerTest.testLogger" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MyDB" />
       <extension name="coverage">
@@ -131,13 +141,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TransactionManagerTest.testMultiThread" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MyDB" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.iamxgw.mydb.backend.tm.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.iamxgw.mydb.backend.tm" />
+      <option name="MAIN_CLASS_NAME" value="com.iamxgw.mydb.backend.tm.TransactionManagerTest" />
+      <option name="METHOD_NAME" value="testMultiThread" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TransactionManagerTest.testMultiThread" />
         <item itemvalue="JUnit.PageCacheTest.testPageCacheMulti" />
         <item itemvalue="JUnit.PageCacheTest.testPageCacheMultiSimple" />
         <item itemvalue="JUnit.PageCacheTest.testPageCache" />
         <item itemvalue="JUnit.LoggerTest.testLogger" />
-        <item itemvalue="JUnit.LoggerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -149,7 +175,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1667223811378</updated>
-      <workItem from="1667223813199" duration="13581000" />
+      <workItem from="1667223813199" duration="14917000" />
+      <workItem from="1667559230609" duration="15524000" />
     </task>
     <servers />
   </component>

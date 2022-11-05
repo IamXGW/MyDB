@@ -10,7 +10,7 @@ import java.io.RandomAccessFile;
 import java.nio.channels.FileChannel;
 
 public interface PageCache {
-    public static final  int PAGE_SIZE = 1 << 13;
+    public static final int PAGE_SIZE = 1 << 13;
 
     int newPage(byte[] initData);
     Page getPage(int pgno) throws Exception;

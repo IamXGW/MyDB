@@ -22,6 +22,7 @@ public class PageCacheImpl extends AbstractCache<Page> implements PageCache {
     private FileChannel fc;
     private Lock fileLock;
 
+    // 记录当前打开的数据库文件有多少页，在数据库文件被打开时计算，在新建页面时自增
     private AtomicInteger pageNumbers;
 
     PageCacheImpl(RandomAccessFile file, FileChannel fileChannel, int maxResources) {
@@ -59,9 +60,8 @@ public class PageCacheImpl extends AbstractCache<Page> implements PageCache {
 
     }
 
-
     /**
-     * 根据 pageNumber 从数据库文件中读取页数据，并包裹成 Page
+     * 根据 pgno 从数据库文件中读取页数据，并包裹成 Page
      * @param key
      * @return
      * @throws Exception
@@ -83,6 +83,10 @@ public class PageCacheImpl extends AbstractCache<Page> implements PageCache {
         return new PageImpl(pgno, buf.array(), this);
     }
 
+    /**
+     * 驱逐页 pg，如果是脏页，则写回文件系统
+     * @param pg
+     */
     @Override
     protected void releaseForCache(Page pg) {
         if (pg.isDirty()) {
@@ -91,6 +95,10 @@ public class PageCacheImpl extends AbstractCache<Page> implements PageCache {
         }
     }
 
+    /**
+     * 将页 pg 写回文件系统
+     * @param pg
+     */
     private void flush(Page pg) {
         int pgno = pg.getPageNumber();
         long offset = pageOffset(pgno);
