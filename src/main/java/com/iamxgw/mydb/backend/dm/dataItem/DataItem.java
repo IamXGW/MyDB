@@ -9,7 +9,14 @@ import com.iamxgw.mydb.common.SubArray;
 
 import java.util.Arrays;
 
+/**
+ * dataItem 结构：
+ * [ValidFlag] [DataSize] [Data]
+ * ValidFlat 1 字节，0 表示合法，1 表示非法。删除一个 DataItem，只需要简单地将其有效位设置为 0
+ * DataSize 2 字节，标识 Data 长度
+ */
 public interface DataItem {
+    // 共享数组 SubArray
     SubArray data();
 
     void before();

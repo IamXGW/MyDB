@@ -59,7 +59,8 @@ public class PageX {
     }
 
     /**
-     * 将 raw 数据插入到 offset 位置，并将 pg 的 offset 更新（取较大的 offset）
+     * 将 raw 数据「恢复」到 offset 位置，并将 pg 的 offset 更新（取较大的 offset）
+     * 在 Recover 的 redo insert 时会使用
      * @param pg
      * @param raw
      * @param offset

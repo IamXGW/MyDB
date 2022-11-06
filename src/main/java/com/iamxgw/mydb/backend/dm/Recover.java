@@ -40,6 +40,12 @@ public class Recover {
 
     // 没有删除型日志
 
+    /**
+     * 从日志 lg 中恢复
+     * @param tm
+     * @param lg
+     * @param pc
+     */
     public static void recover(TransactionManager tm, Logger lg, PageCache pc) {
         System.out.println("Recovering...");
 
@@ -108,16 +114,24 @@ public class Recover {
         return li;
     }
 
+    /**
+     * 恢复一条更新型的日志
+     * @param pc
+     * @param log
+     * @param flag
+     */
     private static void doUpdateLog(PageCache pc, byte[] log, int flag) {
         int pgno;
         short offset;
         byte[] raw;
+        // REDO 还原成新值
         if (flag == REDO) {
             UpdateLogInfo xi = parseUpdateLog(log);
             pgno = xi.pgno;
             offset = xi.offset;
             raw = xi.newRaw;
         } else {
+            // UNDO 还原成旧值
             UpdateLogInfo xi = parseUpdateLog(log);
             pgno = xi.pgno;
             offset = xi.offset;
@@ -158,6 +172,12 @@ public class Recover {
         return li;
     }
 
+    /**
+     * redo log
+     * @param pc
+     * @param log
+     * @param flag
+     */
     private static void doInsertLog(PageCache pc, byte[] log, int flag) {
         InsertLogInfo li = parseInsertLog(log);
         Page pg = null;
@@ -167,7 +187,7 @@ public class Recover {
             Panic.panic(e);
         }
         try {
-            if(flag == UNDO) {
+            if (flag == UNDO) {
                 DataItem.setDataItemRawInvalid(li.raw);
             }
             PageX.recoverInsert(pg, li.raw, li.offset);
@@ -176,6 +196,12 @@ public class Recover {
         }
     }
 
+    /**
+     * 重做（redo）
+     * @param tm
+     * @param lg
+     * @param pc
+     */
     private static void redoTransactions(TransactionManager tm, Logger lg, PageCache pc) {
         lg.rewind();
         while (true) {
@@ -197,7 +223,15 @@ public class Recover {
         }
     }
 
+    /**
+     * undo
+     * @param tm
+     * @param lg
+     * @param pc
+     */
     private static void undoTransactions(TransactionManager tm, Logger lg, PageCache pc) {
+        // 一个 xid 可能对应多条日志，一个事务在 A 点插入了数据，在 B 点也插入了数据，这就会记录两条 log
+        // <xid, logs>
         Map<Long, List<byte[]>> logCache = new HashMap<>();
         lg.rewind();
         while (true) {
@@ -226,6 +260,7 @@ public class Recover {
 
         for (Map.Entry<Long, List<byte[]>> entry : logCache.entrySet()) {
             List<byte[]> logs = entry.getValue();
+            // 对于每一条事务的所有 log，应该倒序 undo
             for (int i = logs.size() - 1; i >= 0; --i) {
                 byte[] log = logs.get(i);
                 if (isInsertLog(log)) {

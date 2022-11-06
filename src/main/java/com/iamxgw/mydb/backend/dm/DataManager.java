@@ -18,6 +18,13 @@ public interface DataManager {
     long insert(long xid, byte[] data) throws Exception;
     void close();
 
+    /**
+     * 在 path 处新建一个 DM
+     * @param path
+     * @param mem
+     * @param tm
+     * @return
+     */
     public static DataManager create(String path, long mem, TransactionManager tm) {
         PageCache pc = PageCache.create(path, mem);
         Logger lg = Logger.create(path);

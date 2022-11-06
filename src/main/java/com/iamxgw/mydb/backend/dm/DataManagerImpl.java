@@ -93,6 +93,14 @@ public class DataManagerImpl extends AbstractCache<DataItem> implements DataMana
         pc.close();
     }
 
+    /**
+     * 在缓存中获取 uid 对应的 DataItem
+     * uid 组成为 [pgno offset]
+     * 其中，pgno 和 offset 各占 4byte
+     * @param uid
+     * @return
+     * @throws Exception
+     */
     @Override
     protected DataItem getForCache(long uid) throws Exception {
         short offset = (short) (uid & ((1L << 16) - 1));
@@ -102,6 +110,10 @@ public class DataManagerImpl extends AbstractCache<DataItem> implements DataMana
         return DataItem.parseDataItem(pg, offset, this);
     }
 
+    /**
+     * DataItem 缓存释放
+     * @param di
+     */
     @Override
     protected void releaseForCache(DataItem di) {
         di.page().release();
@@ -129,7 +141,10 @@ public class DataManagerImpl extends AbstractCache<DataItem> implements DataMana
         return PageOne.checkVc(pageOne);
     }
 
-    // 初始化 PageIndex
+    /**
+     * 初始化 PageIndex
+     * 打开已有 DM 时，需要将 PageIndex 刷一遍
+     */
     void fillPageIndex() {
         int pageNumber = pc.getPageNumber();
         for (int i = 2; i <= pageNumber; ++i) {

@@ -42,6 +42,11 @@ public class PageCacheImpl extends AbstractCache<Page> implements PageCache {
         this.pageNumbers = new AtomicInteger((int)length / PAGE_SIZE);
     }
 
+    /**
+     * 新建一个 page，并返回其 pgno
+     * @param initData
+     * @return
+     */
     @Override
     public int newPage(byte[] initData) {
         int pgno = pageNumbers.incrementAndGet();
@@ -134,7 +139,7 @@ public class PageCacheImpl extends AbstractCache<Page> implements PageCache {
 
     @Override
     public int getPageNumber() {
-        return 0;
+        return pageNumbers.intValue();
     }
 
     @Override

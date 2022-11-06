@@ -8,12 +8,6 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-/**
- * dataItem 结构：
- * [ValidFlag] [DataSize] [Data]
- * ValidFlat 1 字节，0 表示合法，1 表示非法
- * DataSize 2 字节，标识 Data 长度
- */
 public class DataItemImpl implements DataItem {
 
     static final int OF_VALID = 0;
@@ -48,6 +42,9 @@ public class DataItemImpl implements DataItem {
         return new SubArray(raw.raw, raw.start + OF_DATA, raw.end);
     }
 
+    /**
+     * 在修改之前需要调用 before 方法
+     */
     @Override
     public void before() {
         wLock.lock();
@@ -55,12 +52,19 @@ public class DataItemImpl implements DataItem {
         System.arraycopy(raw.raw, raw.start, oldRaw, 0, oldRaw.length);
     }
 
+    /**
+     * 想要撤销修改，需要调用 unBefore 方法
+     */
     @Override
     public void unBefore() {
         System.arraycopy(oldRaw, 0, raw.raw, raw.start, oldRaw.length);
         wLock.unlock();
     }
 
+    /**
+     * 修改完成后，调用 after 方法
+     * @param xid
+     */
     @Override
     public void after(long xid) {
         dm.logDataItem(xid, this);

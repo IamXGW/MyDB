@@ -11,6 +11,18 @@ import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
+/**
+ * 日志文件读写
+ *
+ * 日志文件的标准格式为：
+ * [XChecksum] [Log1] [Log2] ... [LogN] [BadTail]
+ * XChecksum 为后续所有日志计算的 Checksum，int 类型
+ *
+ * 每条日志的标准格式为：
+ * [[size] [Checksum] [Data]]
+ * size 为 4 字节 int，标识 Data 长度
+ * Checksum 为 4 字节 int
+ */
 public interface Logger {
     void log(byte[] data);
     void truncate(long x) throws Exception;

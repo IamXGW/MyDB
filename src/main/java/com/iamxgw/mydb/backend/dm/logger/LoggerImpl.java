@@ -13,18 +13,6 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import com.google.common.primitives.Bytes;
 
-/**
- * 日志文件读写
- *
- * 日志文件的标准格式为：
- * [XChecksum] [Log1] [Log2] ... [LogN] [BadTail]
- * XChecksum 为后续所有日志计算的 Checksum，int 类型
- *
- * 每条日志的标准格式为：
- * [size] [Checksum] [Data]
- * size 为 4 字节 int，标识 Data 长度
- * Checksum 为 4 字节 int
- */
 public class LoggerImpl implements Logger {
     private static final int SEED = 13331;
 
@@ -37,9 +25,10 @@ public class LoggerImpl implements Logger {
     private FileChannel fc;
     private Lock lock;
 
-    // 当前日志指针位置
+    // 当前日志指针位置，以一个日志为单位。每次都指在一条日志的开头
     private long position;
     // 初始化时确定，log 操作不更新
+    // TODO: fileSize 为什么不用变？是因为只有在初始化和调用 next 方法时才会使用到 fileSize？
     private long fileSize;
     private int xChecksum;
 
@@ -55,7 +44,12 @@ public class LoggerImpl implements Logger {
         this.xChecksum = xChecksum;
         this.lock = new ReentrantLock();
     }
-    
+
+    /**
+     * 初始化方法，在 open 一个日志文件时会调用
+     * 1. 确定 fileSize 大小
+     * 2. 检查检验和并移除 badTail
+     */
     void init() {
         long size = 0;
         try {
@@ -142,6 +136,12 @@ public class LoggerImpl implements Logger {
         return log;
     }
 
+    /**
+     * 计算日志 log 的校验和
+     * @param xCheck
+     * @param log
+     * @return
+     */
     private int calChecksum(int xCheck, byte[] log) {
         for (byte b : log) {
             xCheck = xCheck * SEED + b;
@@ -149,6 +149,10 @@ public class LoggerImpl implements Logger {
         return xCheck;
     }
 
+    /**
+     * 记录一条 log
+     * @param data
+     */
     @Override
     public void log(byte[] data) {
         byte[] log = wrapLog(data);
@@ -165,6 +169,10 @@ public class LoggerImpl implements Logger {
         updateXChecksum(log);
     }
 
+    /**
+     * 将 log 的校验和更新到全局校验和 xChecksum 中
+     * @param log
+     */
     private void updateXChecksum(byte[] log) {
         this.xChecksum = calChecksum(this.xChecksum, log);
         try {
@@ -188,6 +196,11 @@ public class LoggerImpl implements Logger {
         return Bytes.concat(size, checksum, data);
     }
 
+    /**
+     * 截断文件到正常文件的末尾
+     * @param x
+     * @throws Exception
+     */
     @Override
     public void truncate(long x) throws Exception {
         lock.lock();
@@ -198,6 +211,10 @@ public class LoggerImpl implements Logger {
         }
     }
 
+    /**
+     * log 的迭代器
+     * @return
+     */
     @Override
     public byte[] next() {
         lock.lock();
@@ -210,6 +227,9 @@ public class LoggerImpl implements Logger {
         }
     }
 
+    /**
+     * 将 positon 指针放在文件头的 xChecksum 之后
+     */
     @Override
     public void rewind() {
         position = 4;
