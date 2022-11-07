@@ -5,17 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3084edcf-ed4f-46d1-9671-0e0dc1d33c2e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/DataManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/DataManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/DataManagerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/DataManagerImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/Recover.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/Recover.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/dataItem/DataItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/dataItem/DataItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/dataItem/DataItemImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/dataItem/DataItemImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/logger/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/logger/Logger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/logger/LoggerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/logger/LoggerImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/page/PageX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/page/PageX.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/pageCache/PageCacheImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/pageCache/PageCacheImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/pageIndex/PageIndex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iamxgw/mydb/backend/dm/pageIndex/PageIndex.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,8 +46,9 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "ToolWindowEndpoints.ShowToolbar": "false",
     "WebServerToolWindowFactoryState": "false",
-    "settings.editor.selected.configurable": "preferences.keymap"
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.uml"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -65,19 +57,16 @@
       <recent name="com.iamxgw.mydb.backend.tm" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TransactionManagerTest.testMultiThread">
-    <configuration name="LoggerTest.testLogger" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.iamxgw.mydb.sandbox.Main" />
       <module name="MyDB" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.iamxgw.mydb.backend.dm.logger.*" />
+          <option name="PATTERN" value="com.iamxgw.mydb.sandbox.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.iamxgw.mydb.backend.dm.logger" />
-      <option name="MAIN_CLASS_NAME" value="com.iamxgw.mydb.backend.dm.logger.LoggerTest" />
-      <option name="METHOD_NAME" value="testLogger" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -148,11 +137,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.TransactionManagerTest.testMultiThread" />
         <item itemvalue="JUnit.PageCacheTest.testPageCacheMulti" />
         <item itemvalue="JUnit.PageCacheTest.testPageCacheMultiSimple" />
         <item itemvalue="JUnit.PageCacheTest.testPageCache" />
-        <item itemvalue="JUnit.LoggerTest.testLogger" />
       </list>
     </recent_temporary>
   </component>
@@ -165,7 +154,7 @@
       <option name="presentableId" value="Default" />
       <updated>1667223811378</updated>
       <workItem from="1667223813199" duration="14917000" />
-      <workItem from="1667559230609" duration="26194000" />
+      <workItem from="1667559230609" duration="28971000" />
     </task>
     <servers />
   </component>
@@ -182,5 +171,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
